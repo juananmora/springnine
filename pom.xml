@@ -51,46 +51,7 @@
           <version>6.0.53</version>
           <scope>provided</scope>
         </dependency>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <scope>test</scope>
-    </dependency>
-
-    <!-- Mockito for mocking objects in unit tests -->
-    <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <scope>test</scope>
-    </dependency>
-    </dependencies>
-  
-    <dependencyManagement>
-    <dependencies>
-        <!-- Dependency management for JUnit -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-bom</artifactId>
-            <version>5.9.3</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-        <!-- Dependency management for Mockito -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>4.2.0</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-
+    
     <build>
         <finalName>${project.artifactId}</finalName>
         <extensions>
