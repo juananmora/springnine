@@ -1,37 +1,36 @@
+package com.example.es.java.springnine;
+
+import com.example.es.java.springnine.proto.GreeterGrpc;
 import com.example.es.java.springnine.proto.GreeterOuterClass;
 import io.grpc.stub.StreamObserver;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 
 public class GreeterServiceTest {
 
-    @Mock
-    private StreamObserver<GreeterOuterClass.HelloReply> responseObserver;
-
-    private GreeterService greeterService;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-        greeterService = new GreeterService();
-    }
-
     @Test
     public void testSayHello() {
-        // Create a sample request
+        // Create a mock StreamObserver
+        StreamObserver<GreeterOuterClass.HelloReply> responseObserver = Mockito.mock(StreamObserver.class);
+
+        // Create a HelloRequest
         GreeterOuterClass.HelloRequest request = GreeterOuterClass.HelloRequest.newBuilder()
                 .setName("John")
                 .build();
 
-        // Call the method under test
+        // Create a GreeterService instance and call the sayHello method
+        GreeterService greeterService = new GreeterService();
         greeterService.sayHello(request, responseObserver);
 
-        // Verify that the expected response was sent to the response observer
-        verify(responseObserver, times(1)).onNext(any(GreeterOuterClass.HelloReply.class));
-        verify(responseObserver, times(1)).onCompleted();
+        // Capture the argument passed to the onNext method of the responseObserver
+        ArgumentCaptor<GreeterOuterClass.HelloReply> argumentCaptor = ArgumentCaptor.forClass(GreeterOuterClass.HelloReply.class);
+        verify(responseObserver).onNext(argumentCaptor.capture());
+
+        // Verify that the message in the HelloReply is correct
+        assertEquals("Hello John", argumentCaptor.getValue().getMessage());
     }
 }
