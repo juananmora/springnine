@@ -6,7 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: juananmora/springnine
     backstage.io/techdocs-ref: dir:.
-    snyk.io/org-name: juananmoraalonso
+    snyk.io/org-name: juananmoraalonsoss
     snyk.io/project-ids: 9450a5a0-d102-4399-8786-7e0b69367601
 spec:
   type: service
